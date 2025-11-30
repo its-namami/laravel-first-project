@@ -1,9 +1,7 @@
 <?php
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use App\Models\Jobs;
-use App\Models\Job;
 
 $jobs = new Jobs();
 
@@ -31,10 +29,7 @@ Route::get('/career', function () use ($jobs) {
 });
 
 Route::get('/career/{job}', function ($route) use ($jobs) {
-    $job = Arr::first(
-        $jobs->allAsJobs,
-        fn(Job $job) => $job->id == $route || $job->slug === $route
-    );
+    $job = $jobs->find($route);
 
-    return view("job", $job->get);
+    $job ? view("job", $job->get) : abort(404);
 });

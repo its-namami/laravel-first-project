@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Arr;
+
 class Jobs
 {
     private int $counter = 0;
@@ -14,13 +16,21 @@ class Jobs
         }
     }
 
-    public array $allAsJobs {
+    private array $allAsJobs {
         get {
             return $this->all;
         }
     }
 
     private array $all = [];
+
+    public function find(string $route): ?Job
+    {
+        return Arr::first(
+            $this->allAsJobs,
+            fn(Job $job) => $job->id == $route || $job->slug === $route
+        );
+    }
 
     public function __construct()
     {
