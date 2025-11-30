@@ -7,7 +7,7 @@
         <div class="mb-4 p-4 border rounded-lg">
             <h2 class="text-xl font-bold">{{ $position['title'] }}</h2>
             <p class="text-gray-700 mb-8">{{ $position['description'] }}</p>
-            <a href="career/{{ $position['slug'] }}" class="text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-700">
+            <a href="/career/{{ $position['slug'] }}" class="text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-700">
                 View Details
             </a>
         </div>
